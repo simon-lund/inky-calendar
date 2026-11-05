@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* A wall calendar: always black on white, never scrolls, never zooms. */
+html,
+body {
+  height: 100%;
+  background: #fff;
+  color: #000;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+body {
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+input {
+  user-select: text;
+}
+
+/* Big, square, one-colour touch targets */
+.tool-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 48px;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+  touch-action: manipulation;
+}
+
+.tool-button:active:not(:disabled) {
+  background: #000;
+  color: #fff;
+}
+
+.tool-button:disabled {
+  border-color: #bbb;
+  color: #bbb;
+}
+
+.tool-button-active {
+  background: #000;
+  color: #fff;
+}
+
+.tool-button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #000;
+  outline-offset: 2px;
+}
