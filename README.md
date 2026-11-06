@@ -1,8 +1,12 @@
 # Inky calendar
 
-**What if a calendar had a drawing layer?**
+**A paper calendar you can draw on, with your real events already printed in.**
 
-Events come from any standard iCal link (Google Calendar, Apple, Nextcloud, …). On top of the month grid sits a transparent canvas you can write and doodle on: circle a date, underline a deadline, draw a heart on a birthday. The drawing is kept per month and stays put when the events change.
+On a paper calendar you don't only write notes. You circle a date, underline a deadline, draw a heart on a birthday, sketch an arrow from one day to another. Digital calendars are good at structured data, but all you can do with them is type.
+
+Inky calendar tries to have both. It loads your events from any standard iCal link (Google Calendar, Apple, Nextcloud, …) and lays them out as a month grid. On top sits a transparent canvas you can draw on freely with a finger, a pen or a mouse. The events stay data, the marks stay yours.
+
+The drawing belongs to the month, not to the events: it is kept per month and stays exactly where you drew it when the events underneath change.
 
 <p align="center">
   <video src="https://github.com/simon-lund/inky-calendar/raw/main/docs/inky-calendar-demo.mp4" controls muted loop playsinline width="320"></video>
