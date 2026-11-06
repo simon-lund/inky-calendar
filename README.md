@@ -4,9 +4,13 @@ A small study: **what if a calendar had a drawing layer?**
 
 Events come from any standard iCal link (Google Calendar, Apple, Nextcloud, …). On top of the month grid sits a transparent canvas you can write and doodle on: circle a date, underline a deadline, draw a heart on a birthday. The drawing is kept per month and stays put when the events change.
 
-![A month view with made-up events and hand-drawn marks on top](docs/screenshot.png)
+<p align="center">
+  <video src="https://github.com/simon-lund/inky-calendar/raw/main/docs/inky-calendar-demo.mp4" controls muted loop playsinline width="320"></video>
+</p>
 
-<sub>All events and drawings in the screenshot are made up. [Watch the 30-second walkthrough](docs/inky-calendar-demo.mp4).</sub>
+<sub>A 30-second walkthrough ([direct link to the video](docs/inky-calendar-demo.mp4)). All events and drawings are made up.</sub>
+
+![A month view with made-up events and hand-drawn marks on top](docs/screenshot.png)
 
 ## Made for e-ink with touch or pen input
 
