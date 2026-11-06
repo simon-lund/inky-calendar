@@ -6,10 +6,10 @@ import type { CalEvent } from '@/lib/events';
 const CACHE_MS = 5 * 60 * 1000;
 const cache = new Map<string, { at: number; data: CalendarResponse }>();
 
-// A fresh copy of the feed at most every few minutes; if Google is unreachable, the last copy.
-async function loadFeed(url: string): Promise<CalendarResponse> {
+// A fresh copy of the feed at most every few minutes (or right away when asked); if Google is unreachable, the last copy.
+async function loadFeed(url: string, force: boolean): Promise<CalendarResponse> {
     const hit = cache.get(url);
-    if (hit && Date.now() - hit.at < CACHE_MS) return hit.data;
+    if (!force && hit && Date.now() - hit.at < CACHE_MS) return hit.data;
     try {
         const data = await ical.async.fromURL(url);
         cache.set(url, { at: Date.now(), data });
@@ -35,7 +35,7 @@ export async function GET(request: Request) {
     const url = rawUrl.replace(/^webcal:\/\//i, 'https://');
 
     try {
-        const data = await loadFeed(url);
+        const data = await loadFeed(url, searchParams.get('refresh') === '1');
         const focusDate = dateStr ? new Date(dateStr) : new Date();
 
         // Whole weeks around the month, like the grid shows

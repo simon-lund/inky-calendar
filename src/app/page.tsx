@@ -11,6 +11,7 @@ import {
   EraserIcon,
   ExpandIcon,
   GearIcon,
+  RefreshIcon,
   PenIcon,
   TrashIcon,
   UndoIcon,
@@ -33,6 +34,8 @@ export default function Home() {
   const [events, setEvents] = useState<CalEvent[]>([]);
   const [feedError, setFeedError] = useState(false);
   const [refreshTick, setRefreshTick] = useState(0);
+  const [refreshing, setRefreshing] = useState(false);
+  const forceRefresh = useRef(false); // set by the refresh button: skip the server's cache once
 
   const [sheet, setSheet] = useState<Sheet>(emptySheet);
   const [sheetReady, setSheetReady] = useState(false);
@@ -80,6 +83,9 @@ export default function Home() {
     let cancelled = false;
     const params = new URLSearchParams({ date: currentMonth.toISOString() });
     if (feedUrl) params.set('url', feedUrl);
+    if (forceRefresh.current) params.set('refresh', '1');
+    forceRefresh.current = false;
+    setRefreshing(true);
     fetch(`/api/calendar?${params}`)
       .then(async (res) => {
         const data = await res.json();
@@ -92,6 +98,9 @@ export default function Home() {
       .catch(() => {
         // keep showing the last events we had
         if (!cancelled) setFeedError(true);
+      })
+      .finally(() => {
+        if (!cancelled) setRefreshing(false);
       });
     return () => {
       cancelled = true;
@@ -303,6 +312,19 @@ export default function Home() {
           {canFullscreen && (
             <button className="tool-button" onClick={toggleFullscreen} aria-label="Fullscreen">
               <ExpandIcon />
+            </button>
+          )}
+          {!DEMO && hasFeed && (
+            <button
+              className="tool-button"
+              onClick={() => {
+                forceRefresh.current = true;
+                setRefreshTick((t) => t + 1);
+              }}
+              disabled={refreshing}
+              aria-label="Refresh events"
+            >
+              <RefreshIcon />
             </button>
           )}
           {!DEMO && (

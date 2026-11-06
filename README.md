@@ -25,7 +25,7 @@ Designed for **e-ink displays with touch or pen input**, as a wall or desk calen
 
 - Draw with finger, pen or mouse. Pen, eraser, undo, clear month.
 - Drawings are saved per month on the machine that hosts the page, so every screen shows the same calendar.
-- Shows events from an iCal link: repeating events, excluded dates, all-day and multi-day events.
+- Shows events from an iCal link: repeating events, excluded dates, all-day and multi-day events. Refreshes every 15 minutes, or tap the refresh button.
 - Wall-calendar behaviour: marks today, rolls over at midnight, keeps the screen awake, returns to the current month after 5 minutes without a touch, fullscreen button.
 - No accounts, no login. Anyone who can reach the page can draw on it, so keep it on your home network.
 
