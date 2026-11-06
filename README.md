@@ -72,3 +72,7 @@ Coordinates are fractions of the canvas and the width is a fraction of its short
 ## Static demo
 
 `INKY_DEMO=1 pnpm build` makes a server-less copy in `out/`, with example events and drawings kept in the visitor's browser. Set `BASE_PATH=/some/path` if it is hosted in a sub-folder.
+
+## License
+
+MIT, see [LICENSE](LICENSE).
