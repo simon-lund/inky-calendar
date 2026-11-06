@@ -6,8 +6,6 @@ On a paper calendar you don't only write notes. You circle a date, underline a d
 
 Inky calendar gives you the best of both worlds. It loads your events from any standard iCal link (Google Calendar, Apple, Nextcloud, …) and lays them out as a month grid. On top sits a transparent canvas you can draw on freely with a finger, a pen or a mouse. The events stay data, the marks stay yours.
 
-The drawing belongs to the month, not to the events: it is kept per month and stays exactly where you drew it when the events underneath change.
-
 <p align="center">
   <video src="https://github.com/simon-lund/inky-calendar/raw/main/docs/inky-calendar-demo.mp4" controls muted loop playsinline width="320"></video>
 </p>
