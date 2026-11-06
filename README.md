@@ -1,7 +1,5 @@
 # Inky calendar
 
-**A paper calendar you can draw on, with your real events already printed in.**
-
 On a paper calendar you don't only write notes. You circle a date, underline a deadline, draw a heart on a birthday, sketch an arrow from one day to another. Digital calendars are good at structured data, but all you can do with them is type.
 
 Inky calendar gives you the best of both worlds. It loads your events from any standard iCal link (Google Calendar, Apple, Nextcloud, …) and lays them out as a month grid. On top sits a transparent canvas you can draw on freely with a finger, a pen or a mouse. The events stay data, the marks stay yours.
