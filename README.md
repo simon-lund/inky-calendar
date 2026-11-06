@@ -48,7 +48,7 @@ Tap the gear in the top right and paste an iCal link. In Google Calendar: Settin
 To set one feed for every screen, start the server with it (see `.env.example`):
 
 ```bash
-INKY_ICAL_URL="https://calendar.google.com/…/basic.ics" pnpm start
+ICAL_URL="https://calendar.google.com/…/basic.ics" pnpm start
 ```
 
 Treat that link like a password.

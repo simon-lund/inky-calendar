@@ -26,7 +26,7 @@ const text = (v: unknown): string =>
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
-    const rawUrl = searchParams.get('url') || process.env.INKY_ICAL_URL;
+    const rawUrl = searchParams.get('url') || process.env.ICAL_URL;
     const dateStr = searchParams.get('date'); // Date within the month
 
     if (!rawUrl) {

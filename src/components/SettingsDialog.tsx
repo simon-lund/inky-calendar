@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 interface SettingsDialogProps {
     url: string;
-    /** The server already has a feed configured (INKY_ICAL_URL). */
+    /** The server already has a feed configured (ICAL_URL). */
     hasServerUrl: boolean;
     onSave: (url: string) => void;
     onClose: () => void;
