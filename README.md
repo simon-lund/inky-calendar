@@ -16,7 +16,7 @@ Inky calendar gives you the best of both worlds. It loads your events from any s
 
 ## Made for e-ink with touch or pen input
 
-The idea behind it is a wall or desk calendar on an **e-ink display with touch or pen input**: slow-changing, glanceable, and you write on it like a paper calendar. So the interface is built to suit that kind of screen:
+Designed for **e-ink displays with touch or pen input**, as a wall or desk calendar: slow-changing, glanceable, and you write on it like a paper calendar. So the interface is built to suit that kind of screen:
 
 - black on white with a few light greys, no colour, no gradients
 - no animations or transitions, only state changes (an e-ink panel refreshes slowly)
