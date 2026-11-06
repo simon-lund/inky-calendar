@@ -51,7 +51,8 @@ To set one feed for every screen, start the server with it (see `.env.example`):
 ICAL_URL="https://calendar.google.com/…/basic.ics" pnpm start
 ```
 
-Treat that link like a password.
+> [!WARNING]
+> Treat this link like a password. Anyone who has it can read your calendar.
 
 ### On a touchscreen
 
