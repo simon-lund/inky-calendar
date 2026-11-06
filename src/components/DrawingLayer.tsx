@@ -11,14 +11,11 @@ interface DrawingLayerProps {
     onStroke: (stroke: Stroke) => void;
 }
 
-function paintSegment(
-    ctx: CanvasRenderingContext2D,
-    stroke: Stroke,
-    from: [number, number],
-    to: [number, number],
-    w: number,
-    h: number,
-) {
+type Pt = [number, number];
+
+const mid = (a: Pt, b: Pt): Pt => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+
+function begin(ctx: CanvasRenderingContext2D, stroke: Stroke, w: number, h: number) {
     ctx.globalCompositeOperation = stroke.tool === 'eraser' ? 'destination-out' : 'source-over';
     ctx.strokeStyle = '#000';
     ctx.fillStyle = '#000';
@@ -26,19 +23,41 @@ function paintSegment(
     ctx.lineJoin = 'round';
     ctx.lineWidth = Math.max(1.5, stroke.w * Math.min(w, h));
     ctx.beginPath();
+}
+
+// A stroke is drawn as curves through the midpoints of its points, with each point as the
+// control point. Fast strokes deliver few points; this keeps them smooth instead of angular.
+
+/** Paints the piece of the stroke that point `i` (>= 1) adds. */
+function paintStep(ctx: CanvasRenderingContext2D, stroke: Stroke, i: number, w: number, h: number) {
+    const { pts } = stroke;
+    begin(ctx, stroke, w, h);
+    const at = (q: Pt) => [q[0] * w, q[1] * h] as const;
+    if (i === 1) {
+        ctx.moveTo(...at(pts[0]));
+        ctx.lineTo(...at(mid(pts[0], pts[1])));
+    } else {
+        ctx.moveTo(...at(mid(pts[i - 2], pts[i - 1])));
+        ctx.quadraticCurveTo(...at(pts[i - 1]), ...at(mid(pts[i - 1], pts[i])));
+    }
+    ctx.stroke();
+}
+
+/** Paints the tail from the last midpoint to the stroke's final point, or a dot for a single point. */
+function paintEnd(ctx: CanvasRenderingContext2D, stroke: Stroke, w: number, h: number) {
+    const { pts } = stroke;
+    if (pts.length === 0) return;
+    begin(ctx, stroke, w, h);
+    const last = pts[pts.length - 1];
+    const from = pts.length === 1 ? last : mid(pts[pts.length - 2], last);
     ctx.moveTo(from[0] * w, from[1] * h);
-    ctx.lineTo(to[0] * w, to[1] * h);
+    ctx.lineTo(last[0] * w, last[1] * h);
     ctx.stroke();
 }
 
 function paintStroke(ctx: CanvasRenderingContext2D, stroke: Stroke, w: number, h: number) {
-    const { pts } = stroke;
-    if (pts.length === 0) return;
-    if (pts.length === 1) {
-        paintSegment(ctx, stroke, pts[0], pts[0], w, h);
-        return;
-    }
-    for (let i = 1; i < pts.length; i++) paintSegment(ctx, stroke, pts[i - 1], pts[i], w, h);
+    for (let i = 1; i < stroke.pts.length; i++) paintStep(ctx, stroke, i, w, h);
+    paintEnd(ctx, stroke, w, h);
 }
 
 /** Transparent canvas over the calendar grid. Fills its (relatively positioned) parent. */
@@ -124,7 +143,7 @@ const DrawingLayer: React.FC<DrawingLayerProps> = ({ sheet, tool, disabled, onSt
             const to = norm(ev);
             if (from[0] === to[0] && from[1] === to[1]) continue;
             current.stroke.pts.push(to);
-            paintSegment(ctx, current.stroke, from, to, size.w, size.h);
+            paintStep(ctx, current.stroke, current.stroke.pts.length - 1, size.w, size.h);
         }
     };
 
@@ -132,6 +151,8 @@ const DrawingLayer: React.FC<DrawingLayerProps> = ({ sheet, tool, disabled, onSt
         const current = live.current;
         if (!current || current.id !== e.pointerId) return;
         live.current = null;
+        const ctx = canvasRef.current?.getContext('2d');
+        if (ctx) paintEnd(ctx, current.stroke, size.w, size.h);
         onStroke(current.stroke);
     };
 

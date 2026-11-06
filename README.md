@@ -6,7 +6,7 @@ Events come from any standard iCal link (Google Calendar, Apple, Nextcloud, …)
 
 ![A month view with made-up events and hand-drawn marks on top](docs/screenshot.png)
 
-<sub>All events and drawings in the screenshot are made up. [Watch the 60-second walkthrough](docs/inky-calendar-demo.mp4).</sub>
+<sub>All events and drawings in the screenshot are made up. [Watch the 30-second walkthrough](docs/inky-calendar-demo.mp4).</sub>
 
 ## Made for e-ink with touch or pen input
 
