@@ -1,6 +1,6 @@
 # Inky calendar
 
-A small study: **what if a calendar had a drawing layer?**
+**What if a calendar had a drawing layer?**
 
 Events come from any standard iCal link (Google Calendar, Apple, Nextcloud, …). On top of the month grid sits a transparent canvas you can write and doodle on: circle a date, underline a deadline, draw a heart on a birthday. The drawing is kept per month and stays put when the events change.
 
