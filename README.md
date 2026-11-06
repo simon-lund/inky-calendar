@@ -10,9 +10,9 @@ Inky calendar gives you the best of both worlds. It loads your events from any s
   <video src="https://github.com/simon-lund/inky-calendar/raw/main/docs/inky-calendar-demo.mp4" controls muted loop playsinline width="320"></video>
 </p>
 
-<sub>A 30-second walkthrough ([direct link to the video](docs/inky-calendar-demo.mp4)). All events and drawings are made up.</sub>
-
 ![A month view with made-up events and hand-drawn marks on top](docs/screenshot.png)
+
+<sub>A 30-second walkthrough ([direct link to the video](docs/inky-calendar-demo.mp4)). All events and drawings are made up.</sub>
 
 ## Made for e-ink with touch or pen input
 
