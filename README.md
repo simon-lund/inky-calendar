@@ -23,8 +23,6 @@ Designed for **e-ink displays with touch or pen input**, as a wall or desk calen
 - large, square touch targets, no hover states, no scrolling
 - strokes are stored as vectors in 0–1 coordinates, so the same drawing renders on a panel of any size or orientation
 
-It also works as a plain web page on any tablet or touchscreen, which is how it was built and tested. I have not run it on actual e-ink hardware yet, so expect to tune refresh behaviour there.
-
 ## What it does
 
 - Draw with finger, pen or mouse. Pen, eraser, undo, clear month.
